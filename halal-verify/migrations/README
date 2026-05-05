@@ -1,0 +1,1 @@
+Alembic migration environment for HalalVerify. Run `alembic upgrade head` from the project root.

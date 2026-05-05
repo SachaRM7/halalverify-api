@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="grid">
+  <div class="card"><h3>Total given</h3><p>{{ total_all }}</p></div>
+  <div class="card"><h3>This year</h3><p>{{ total_year }}</p></div>
+  <div class="card"><h3>This month</h3><p>{{ total_month }}</p></div>
+  <div class="card"><h3>Donations logged</h3><p>{{ donation_count }}</p></div>
+</div>
+
+<div class="grid" style="margin-top: 1rem;">
+  <div class="card">
+    <h3>Giving trend</h3>
+    <div style="height:280px;">
+      <canvas id="givingChart" data-labels='{{ chart_labels|tojson }}' data-values='{{ chart_values|tojson }}'></canvas>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Zakat goal progress</h3>
+    {% if goal %}
+      <p>Annual target: {{ goal.annual_zakat_goal }}</p>
+      <p>Suggested due from inputs: {{ suggested_due }}</p>
+      <div class="progress"><div class="progress-bar" style="width: {{ goal_progress if goal_progress <= 100 else 100 }}%;"></div></div>
+      <p>{{ goal_progress }}%</p>
+    {% else %}
+      <p>No goal configured yet.</p>
+    {% endif %}
+  </div>
+</div>
+
+<div class="grid" style="margin-top: 1rem;">
+  <div class="card">
+    <h3>By donation type</h3>
+    <ul>
+      {% for name, value in by_type.items() %}<li>{{ name }}: {{ value }}</li>{% endfor %}
+    </ul>
+  </div>
+  <div class="card">
+    <h3>By cause area</h3>
+    <ul>
+      {% for name, value in by_category.items() %}<li>{{ name }}: {{ value }}</li>{% endfor %}
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Top transparent charities</h3>
+    <ul>
+      {% for charity in top_charities %}
+        <li><a href="{{ url_for('charity_detail', charity_id=charity.id) }}">{{ charity.name }}</a> <span class="rating">{{ '%.1f'|format(charity.average_rating) }}</span></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

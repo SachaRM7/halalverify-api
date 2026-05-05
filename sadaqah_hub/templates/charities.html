@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="grid">
+  <div class="card">
+    <h2>Browse charities</h2>
+    <form class="inline" method="get">
+      <input type="text" name="q" placeholder="Search name, cause, country" value="{{ query }}">
+      <button type="submit">Search</button>
+    </form>
+    <table class="table" style="margin-top: 1rem;">
+      <thead><tr><th>Name</th><th>Country</th><th>Cause areas</th><th>Rating</th></tr></thead>
+      <tbody>
+      {% for charity in charities %}
+        <tr>
+          <td><a href="{{ url_for('charity_detail', charity_id=charity.id) }}">{{ charity.name }}</a></td>
+          <td>{{ charity.registration_country }}</td>
+          <td>{{ charity.cause_areas }}</td>
+          <td class="rating">{{ '%.1f'|format(charity.average_rating) }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Submit charity</h2>
+    <form method="post">
+      <label>Name</label><input type="text" name="name" required>
+      <label>Website</label><input type="url" name="website">
+      <label>Registration country</label><input type="text" name="registration_country">
+      <label>Cause areas</label><input type="text" name="cause_areas" placeholder="water,education">
+      <label>Description</label><textarea name="description"></textarea>
+      <button type="submit">Save charity</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

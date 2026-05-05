@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+  <h2>API documentation</h2>
+  <ul>
+    <li><code>GET /api/charities</code> — list charities</li>
+    <li><code>GET /api/charities/&lt;id&gt;</code> — charity detail with reviews</li>
+    <li><code>GET /api/charities/&lt;id&gt;/reports</code> — report URLs</li>
+    <li><code>POST /api/charities</code> — create charity (requires passphrase header)</li>
+    <li><code>POST /api/charities/&lt;id&gt;/reviews</code> — create review (requires passphrase header)</li>
+  </ul>
+  <p>For write endpoints send <code>X-Community-Passphrase</code>.</p>
+</div>
+{% endblock %}

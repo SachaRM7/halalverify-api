@@ -1,0 +1,63 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f7f8;
+  color: #1f2d3d;
+}
+header {
+  background: #0f766e;
+  color: white;
+  padding: 1rem 1.5rem;
+}
+nav a {
+  color: white;
+  margin-right: 1rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+main { padding: 1.5rem; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+.table th, .table td {
+  border-bottom: 1px solid #d7e0e5;
+  padding: 0.65rem;
+  text-align: left;
+}
+form.inline > * { margin-right: 0.5rem; }
+label { display: block; font-weight: bold; margin-top: 0.5rem; }
+input, select, textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+button {
+  margin-top: 0.8rem;
+  background: #0f766e;
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.flash.success { background: #dcfce7; padding: 0.75rem; border-radius: 8px; margin-bottom: 1rem; }
+.progress { background: #d1fae5; border-radius: 999px; height: 16px; overflow: hidden; }
+.progress-bar { background: #0f766e; height: 16px; }
+.small { color: #64748b; font-size: 0.9rem; }
+.rating { color: #ca8a04; font-weight: bold; }
+.footer { margin-top: 2rem; color: #64748b; }

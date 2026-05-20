@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "HalalVerify",
+  "version": "0.1.0",
+  "description": "Check halal status for products on shopping sites.",
+  "permissions": ["activeTab", "storage"],
+  "host_permissions": [
+    "https://www.amazon.*/*",
+    "https://www.walmart.com/*",
+    "https://www.target.com/*",
+    "https://www.instacart.com/*",
+    "https://www.aliexpress.com/*",
+    "https://www.ebay.*/*",
+    "http://localhost:8000/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "HalalVerify"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.amazon.*/*",
+        "https://www.walmart.com/*",
+        "https://www.target.com/*",
+        "https://www.instacart.com/*",
+        "https://www.aliexpress.com/*",
+        "https://www.ebay.*/*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

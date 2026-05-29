@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sadaqah & Zakat Transparency Hub</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script defer src="{{ url_for('static', filename='js/app.js') }}"></script>
+</head>
+<body>
+<header>
+  <h1>Sadaqah & Zakat Transparency Hub</h1>
+  <nav>
+    <a href="{{ url_for('index') }}">Dashboard</a>
+    <a href="{{ url_for('donations') }}">Donations</a>
+    <a href="{{ url_for('charities') }}">Charities</a>
+    <a href="{{ url_for('goals') }}">Goals</a>
+    <a href="{{ url_for('reports') }}">Reports</a>
+    <a href="{{ url_for('api_docs') }}">API Docs</a>
+  </nav>
+</header>
+<main>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+  <div class="footer">Local-first, privacy-respecting, zero-account giving tracker.</div>
+</main>
+</body>
+</html>

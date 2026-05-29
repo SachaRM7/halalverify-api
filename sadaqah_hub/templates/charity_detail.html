@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="grid">
+  <div class="card">
+    <h2>{{ charity.name }}</h2>
+    <p>{{ charity.description }}</p>
+    <p><strong>Country:</strong> {{ charity.registration_country }}</p>
+    <p><strong>Cause areas:</strong> {{ charity.cause_areas }}</p>
+    <p><strong>Website:</strong> <a href="{{ charity.website }}">{{ charity.website }}</a></p>
+    <p><strong>Average rating:</strong> <span class="rating">{{ '%.1f'|format(charity.average_rating) }}</span></p>
+    <h3>Public reports</h3>
+    <ul>{% for report in charity.reports %}<li><a href="{{ report }}">{{ report }}</a></li>{% endfor %}</ul>
+    <h3>Reviews</h3>
+    <ul>
+      {% for review in charity.reviews %}
+        <li><strong>{{ review.reviewer_name }}</strong> — {{ review.rating }}/5 — {{ review.review_text }}</li>
+      {% else %}
+        <li>No reviews yet.</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Leave a review</h3>
+    <form method="post">
+      <label>Name</label><input type="text" name="reviewer_name">
+      <label>Rating</label><select name="rating">{% for n in range(1,6) %}<option>{{ n }}</option>{% endfor %}</select>
+      <label>Review</label><textarea name="review_text"></textarea>
+      <button type="submit">Save review</button>
+    </form>
+    <h3>Recent donations</h3>
+    <ul>
+      {% for donation in donations %}<li>{{ donation.date }} — {{ donation.amount }} {{ donation.currency }} ({{ donation.donation_type }})</li>{% else %}<li>No linked donations yet.</li>{% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

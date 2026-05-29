@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="grid">
+  <div class="card">
+    <h2>Giving goals</h2>
+    <form method="post">
+      <label>Donor name</label><input type="text" name="donor_name" value="{{ goal.donor_name or '' }}">
+      <label>Annual zakat goal</label><input type="number" min="0" step="0.01" name="annual_zakat_goal" value="{{ goal.annual_zakat_goal or 0 }}">
+      <label>Monthly sadaqah target</label><input type="number" min="0" step="0.01" name="monthly_sadaqah_target" value="{{ goal.monthly_sadaqah_target or 0 }}">
+      <label>Assets</label><input type="number" min="0" step="0.01" name="assets" value="{{ goal.assets or 0 }}">
+      <label>Liabilities</label><input type="number" min="0" step="0.01" name="liabilities" value="{{ goal.liabilities or 0 }}">
+      <label>Nisab threshold</label><input type="number" min="0" step="0.01" name="nisab_threshold" value="{{ goal.nisab_threshold or 5500 }}">
+      <label>Telegram chat ID</label><input type="text" name="telegram_chat_id" value="{{ goal.telegram_chat_id or '' }}">
+      <label>Preferred causes</label><input type="text" name="preferred_causes" value="{{ goal.preferred_causes or '' }}" placeholder="water,food,education">
+      <button type="submit">Save goals</button>
+    </form>
+  </div>
+  <div class="card">
+    <h2>Calculator output</h2>
+    <p>Suggested zakat due: {{ suggested_due }}</p>
+    <p class="small">This is a guidance tool, not a fatwa. Verify methodology with a scholar you trust.</p>
+  </div>
+</div>
+{% endblock %}
